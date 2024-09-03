@@ -3,13 +3,12 @@ import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
-import { DEFAULT_GROUPS } from '@/constants';
 interface GroupModalProps {
   isOpen: boolean;
   closeModal: () => void;
 }
 export default function GroupModal({ isOpen, closeModal }: GroupModalProps) {
-  const { groups, deleteGroup, addGroup } = useGroups();
+  const { groups, deleteGroup, addGroup, isDeletable } = useGroups();
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const $form = e.target as HTMLFormElement;
@@ -37,11 +36,9 @@ export default function GroupModal({ isOpen, closeModal }: GroupModalProps) {
               {
                 <FontAwesomeIcon
                   icon={faXmark as IconProp}
-                  cursor={`${
-                    DEFAULT_GROUPS.includes(group) ? 'not-allowed' : 'pointer'
-                  }`}
+                  cursor={`${isDeletable(group) ? 'pointer' : 'not-allowed'}`}
                   onClick={() => deleteGroup(group)}
-                  color={`${DEFAULT_GROUPS.includes(group) ? 'gray' : 'black'}`}
+                  color={`${isDeletable(group) ? 'black' : 'gray'}`}
                 />
               }
             </li>
