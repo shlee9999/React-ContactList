@@ -22,6 +22,9 @@ button:active {
   filter: brightness(1.1);
 }
 
+select {
+  outline: none;
+}
 input {
   padding: 0;
   outline: none;
@@ -44,4 +47,21 @@ input:focus::placeholder {
   background-color: rgba(0, 0, 0, 0.8);
   width: 100vw;
   height: 100vh;
+}
+
+.modal {
+  position: fixed;
+  background-color: white;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 400px;
+  height: 400px;
+  padding: 32px 48px;
+  border-radius: 12px;
+}
+.modal h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
 }

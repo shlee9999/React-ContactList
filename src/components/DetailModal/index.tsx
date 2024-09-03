@@ -23,7 +23,7 @@ export default function DetailModal({
   return (
     <>
       <div className='modal-wrapper' onClick={closeModal} />
-      <div className='detail-modal' onClick={(e) => e.stopPropagation()}>
+      <div className='modal detail-modal' onClick={(e) => e.stopPropagation()}>
         <h2>연락처 상세 정보</h2>
         <FontAwesomeIcon
           icon={faXmark as IconProp}

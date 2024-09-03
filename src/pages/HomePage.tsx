@@ -16,7 +16,11 @@ export default function HomePage() {
     openModal: openGroupModal,
     closeModal: closeGroupModal,
   } = useModal();
-
+  const {
+    isOpen: isAddModalOpen,
+    openModal: openAddModal,
+    closeModal: closeAddModal,
+  } = useModal();
   const ref = useRef<HTMLInputElement>(null);
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const filterWord = e.target.value;
@@ -49,7 +53,12 @@ export default function HomePage() {
   }, [contactInfos]);
   return (
     <div className='home'>
-      <AddModal isOpen openGroupModal={openGroupModal} />
+      <button onClick={openAddModal}>추가하기</button>
+      <AddModal
+        isOpen={isAddModalOpen}
+        openGroupModal={openGroupModal}
+        closeModal={closeAddModal}
+      />
       <div className='outer-wrap'>
         <div className='search-wrap'>
           <input

@@ -1,6 +1,5 @@
 .home {
   display: flex; /*! 임시. 나중에 모달로 바꾸면 빠질 css */
-  border: 1px solid tomato;
 }
 .outer-wrap {
   flex: 1; /*! 임시. 나중에 모달로 바꾸면 빠질 css */

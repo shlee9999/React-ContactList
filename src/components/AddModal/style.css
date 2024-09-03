@@ -1,34 +1,35 @@
 .add-modal {
-  width: 400px;
-  border: 2px solid var(--border-color);
-  padding: 1rem;
-  border-radius: 12px;
 }
-
-.input-con {
+.add-form {
+  height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  justify-content: space-between;
+}
+.input-con {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px 0;
 }
 
 .input-con > li {
   display: flex;
+  align-items: center;
   gap: 4px;
   font-weight: 600;
 }
 
-.input-con span {
-  flex: 2;
-}
 .input-con input {
   flex: 2;
+  height: 40px;
 }
-.input-con select {
-  flex: 1;
+.input-con span {
+  width: 100px;
 }
+.input-con select,
 .input-con select + button {
   flex: 1;
-}
-.save-btn {
-  margin-top: 8px;
+  height: 30px;
 }

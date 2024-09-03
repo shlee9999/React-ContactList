@@ -1,19 +1,6 @@
 .group-modal {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  translate: -50% -50%;
-  border: 1px solid black;
-  background-color: white;
-  width: 400px;
-  height: 400px;
-  padding: 32px 48px;
 }
-.group-modal > h2 {
-  text-align: center;
-  font-size: 1.5rem;
-  font-weight: 600;
-}
+
 .group-con {
   margin-top: 20px;
   height: 230px;

@@ -5,11 +5,23 @@ import { ContactInfo } from '@/types';
 import useContactInfos from '@/hooks/useContactInfo';
 import { useRecoilValue } from 'recoil';
 import { groupsAtom } from '@/atoms';
+import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { faXmark } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect, useRef } from 'react';
+
 interface AddModalProps {
   isOpen: boolean;
+  closeModal: () => void;
   openGroupModal: () => void;
 }
-export default function AddModal({ isOpen, openGroupModal }: AddModalProps) {
+
+export default function AddModal({
+  isOpen,
+  openGroupModal,
+  closeModal,
+}: AddModalProps) {
+  const ref = useRef<HTMLInputElement>(null);
   const groups = useRecoilValue(groupsAtom);
   const { addContactInfo } = useContactInfos();
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -37,57 +49,75 @@ export default function AddModal({ isOpen, openGroupModal }: AddModalProps) {
     $form.reset(); // 폼 초기화
     ($form[0] as HTMLInputElement).focus(); // 이렇게 인덱스로 첫 번째 input 접근 가능
   };
+  useEffect(() => {
+    if (isOpen && ref.current) ref.current.focus();
+  }, [isOpen]);
   if (!isOpen) return null;
   return (
-    <div className='add-modal'>
-      <form className='add-form' onSubmit={onSubmit}>
-        <ul className='input-con'>
-          <li>
-            <span>이름</span>
-            {/* todo input 한글 검사 */}
-            <Input
-              type='text'
-              placeholder='이름'
-              minLength={2}
-              maxLength={4}
-              name='name'
-              pattern='^[가-힣]+$'
-            />
-          </li>
-          <li>
-            <span>전화번호</span>
-            <Input
-              type='tel'
-              placeholder='전화번호(000-0000-0000)'
-              name='phone'
-              pattern='\d{3}-\d{3,4}-\d{4}'
-            />
-          </li>
-          <li>
-            <span>그룹</span>
-            <select name='group'>
-              {groups.map((group, index) => (
-                <option key={index} defaultChecked={index === 0} value={group}>
-                  {group}
-                </option>
-              ))}
-            </select>
-            <button type='button' onClick={openGroupModal}>
-              조직추가
-            </button>
-          </li>
-          <li>
-            <span>간단한 기록</span>
-            <Input
-              type='text'
-              placeholder='간단한 기록(최대 13자)'
-              name='record'
-              maxLength={13}
-            />
-          </li>
-        </ul>
-        <PrimaryBtn className='save-btn'>저장</PrimaryBtn>
-      </form>
-    </div>
+    <>
+      <div className='modal-wrapper' />
+      <div className='modal add-modal'>
+        <FontAwesomeIcon
+          icon={faXmark as IconProp}
+          cursor='pointer'
+          onClick={closeModal}
+          className='modal_close-btn'
+        />
+        <form className='add-form' onSubmit={onSubmit}>
+          <h2>추가하기</h2>
+          <ul className='input-con'>
+            <li>
+              <span>이름</span>
+              {/* todo input 한글 검사 */}
+              <input
+                type='text'
+                placeholder='이름 (2~4자)'
+                minLength={2}
+                maxLength={4}
+                name='name'
+                pattern='^[가-힣]+$'
+                ref={ref}
+              />
+            </li>
+            <li>
+              <span>전화번호</span>
+              <Input
+                type='tel'
+                placeholder='전화번호(000-0000-0000)'
+                name='phone'
+                pattern='\d{3}-\d{3,4}-\d{4}'
+              />
+            </li>
+            <li>
+              <span>그룹</span>
+              <select name='group'>
+                {groups.map((group, index) => (
+                  <option
+                    key={index}
+                    defaultChecked={index === 0}
+                    value={group}
+                  >
+                    {group}
+                  </option>
+                ))}
+              </select>
+              <button type='button' onClick={openGroupModal}>
+                조직추가
+              </button>
+            </li>
+            <li>
+              <span>간단한 기록</span>
+              <Input
+                type='text'
+                placeholder='간단한 기록(최대 13자)'
+                name='record'
+                maxLength={13}
+              />
+            </li>
+          </ul>
+          <PrimaryBtn className='save-btn'>저장</PrimaryBtn>
+        </form>
+      </div>
+    </>
   );
 }

@@ -21,8 +21,7 @@ export default function GroupModal({ isOpen, closeModal }: GroupModalProps) {
   if (!isOpen) return null;
   return (
     <>
-      <div className='modal-wrapper' onClick={closeModal} />
-      <div className='group-modal' onClick={(e) => e.stopPropagation()}>
+      <div className='modal group-modal' onClick={(e) => e.stopPropagation()}>
         <h2>그룹 관리</h2>
         <FontAwesomeIcon
           icon={faXmark as IconProp}
