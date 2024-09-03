@@ -1,0 +1,53 @@
+.group-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  border: 1px solid black;
+  background-color: white;
+  width: 400px;
+  height: 400px;
+  padding: 32px 48px;
+}
+.group-modal > h2 {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.group-con {
+  margin-top: 20px;
+  height: 230px;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+}
+.group-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.group-form {
+  margin-top: 20px;
+  background-color: tomato;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 40px;
+}
+.group-form input {
+  height: 100%;
+  flex: 1;
+}
+
+.group-form button {
+  height: 100%;
+}
+
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+}

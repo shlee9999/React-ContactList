@@ -4,10 +4,17 @@ import PrimaryBtn from '@/components/PrimaryBtn';
 import ContactInfoCon from '@/components/ContactInfoCon';
 import useContactInfos from '@/hooks/useContactInfo';
 import { useEffect, useRef, useState } from 'react';
+import useModal from '@/hooks/useModal';
+import GroupModal from '@/components/GroupModal';
 export default function HomePage() {
   const { contactInfos } = useContactInfos();
   const [filteredContactInfos, setFilteredContactInfos] =
     useState(contactInfos);
+  const {
+    isOpen: isGroupModalOpen,
+    openModal: openGroupModal,
+    closeModal: closeGroupModal,
+  } = useModal();
   const ref = useRef<HTMLInputElement>(null);
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const filterWord = e.target.value;
@@ -40,7 +47,7 @@ export default function HomePage() {
   }, [contactInfos]);
   return (
     <div className='home'>
-      <AddModal isOpen />
+      <AddModal isOpen openGroupModal={openGroupModal} />
       <div className='outer-wrap'>
         <div className='search-wrap'>
           <input
@@ -53,6 +60,7 @@ export default function HomePage() {
         </div>
         <ContactInfoCon contactInfos={filteredContactInfos} />
       </div>
+      <GroupModal isOpen={isGroupModalOpen} closeModal={closeGroupModal} />
     </div>
   );
 }

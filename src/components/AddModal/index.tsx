@@ -7,8 +7,9 @@ import { useRecoilValue } from 'recoil';
 import { groupsAtom } from '@/atoms';
 interface AddModalProps {
   isOpen: boolean;
+  openGroupModal: () => void;
 }
-export default function AddModal({ isOpen }: AddModalProps) {
+export default function AddModal({ isOpen, openGroupModal }: AddModalProps) {
   const groups = useRecoilValue(groupsAtom);
   const { addContactInfo } = useContactInfos();
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -68,7 +69,9 @@ export default function AddModal({ isOpen }: AddModalProps) {
                 </option>
               ))}
             </select>
-            <button type='button'>조직추가</button>
+            <button type='button' onClick={openGroupModal}>
+              조직추가
+            </button>
           </li>
           <li>
             <span>간단한 기록</span>
