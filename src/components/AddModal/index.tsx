@@ -49,6 +49,19 @@ export default function AddModal({
     $form.reset(); // 폼 초기화
     ($form[0] as HTMLInputElement).focus(); // 이렇게 인덱스로 첫 번째 input 접근 가능
   };
+  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const target = e.target as HTMLInputElement;
+    switch (target.name) {
+      case 'name':
+        console.log(target.value);
+        return;
+      case 'phone':
+        console.log(target.value);
+        return;
+      default:
+        return;
+    }
+  };
   useEffect(() => {
     if (isOpen && ref.current) ref.current.focus();
   }, [isOpen]);
@@ -70,6 +83,7 @@ export default function AddModal({
               <span>이름</span>
               {/* todo input 한글 검사 */}
               <input
+                onChange={onChange}
                 type='text'
                 placeholder='이름 (2~4자)'
                 minLength={2}
@@ -82,6 +96,7 @@ export default function AddModal({
             <li>
               <span>전화번호</span>
               <Input
+                onChange={onChange}
                 type='tel'
                 placeholder='전화번호(000-0000-0000)'
                 name='phone'
@@ -109,6 +124,7 @@ export default function AddModal({
             <li>
               <span>간단한 기록</span>
               <Input
+                onChange={onChange}
                 type='text'
                 placeholder='간단한 기록(최대 13자)'
                 name='record'
