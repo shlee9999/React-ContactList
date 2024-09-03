@@ -1,4 +1,5 @@
 import { groupsAtom } from '@/atoms';
+import { DEFAULT_GROUPS } from '@/constants';
 import { useRecoilState } from 'recoil';
 
 export default function useGroups() {
@@ -11,6 +12,10 @@ export default function useGroups() {
     setGroups((prev) => [...prev, group].sort()); // 사전순 정렬
   };
   const deleteGroup = (targetGroup: string) => {
+    if (DEFAULT_GROUPS.includes(targetGroup)) {
+      window.alert('기본 그룹은 지울 수 없어요!');
+      return;
+    }
     setGroups((prev) => prev.filter((group) => group !== targetGroup));
   };
 

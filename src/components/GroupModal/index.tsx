@@ -3,6 +3,7 @@ import './style.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
+import { DEFAULT_GROUPS } from '@/constants';
 interface GroupModalProps {
   isOpen: boolean;
   closeModal: () => void;
@@ -33,11 +34,16 @@ export default function GroupModal({ isOpen, closeModal }: GroupModalProps) {
           {groups.map((group) => (
             <li className='group-item'>
               <span>{group}</span>
-              <FontAwesomeIcon
-                icon={faXmark as IconProp}
-                cursor='pointer'
-                onClick={() => deleteGroup(group)}
-              />
+              {
+                <FontAwesomeIcon
+                  icon={faXmark as IconProp}
+                  cursor={`${
+                    DEFAULT_GROUPS.includes(group) ? 'not-allowed' : 'pointer'
+                  }`}
+                  onClick={() => deleteGroup(group)}
+                  color={`${DEFAULT_GROUPS.includes(group) ? 'gray' : 'black'}`}
+                />
+              }
             </li>
           ))}
         </ul>

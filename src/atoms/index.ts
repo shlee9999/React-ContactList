@@ -1,3 +1,4 @@
+import { DEFAULT_GROUPS } from '@/constants';
 import { ContactInfo } from '@/types';
 import { atom, AtomEffect } from 'recoil';
 
@@ -23,6 +24,6 @@ export const contactInfosAtom = atom<ContactInfo[]>({
 
 export const groupsAtom = atom<string[]>({
   key: 'groups',
-  default: ['가족', '직장', '친구', '스터디'],
+  default: DEFAULT_GROUPS,
   effects: [localStorageEffect<string[]>('groups')],
 });
