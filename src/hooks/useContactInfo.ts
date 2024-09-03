@@ -13,11 +13,21 @@ export default function useContactInfos() {
       )
     );
   };
-  const deleteContactInfo = (id: string) => {
+  const deleteContactInfo = (id: ContactInfo['id']) => {
     setContactInfo((prev) =>
       prev.filter((contactInfo) => contactInfo.id !== id)
     );
   };
+  const updateContactInfo = (
+    id: ContactInfo['id'],
+    newContactInfo: ContactInfo
+  ) => {
+    setContactInfo((prev) =>
+      prev.map((contactInfo) =>
+        contactInfo.id === id ? newContactInfo : contactInfo
+      )
+    );
+  };
 
-  return { contactInfos, addContactInfo, deleteContactInfo };
+  return { contactInfos, addContactInfo, deleteContactInfo, updateContactInfo };
 }
