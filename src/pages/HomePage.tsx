@@ -6,6 +6,7 @@ import useContactInfos from '@/hooks/useContactInfo';
 import { useEffect, useRef, useState } from 'react';
 import useModal from '@/hooks/useModal';
 import GroupModal from '@/components/GroupModal';
+
 export default function HomePage() {
   const { contactInfos } = useContactInfos();
   const [filteredContactInfos, setFilteredContactInfos] =
@@ -15,6 +16,7 @@ export default function HomePage() {
     openModal: openGroupModal,
     closeModal: closeGroupModal,
   } = useModal();
+
   const ref = useRef<HTMLInputElement>(null);
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const filterWord = e.target.value;

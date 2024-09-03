@@ -17,7 +17,7 @@ const localStorageEffect: <T>(key: string) => AtomEffect<T> =
 
 export const contactInfosAtom = atom<ContactInfo[]>({
   key: 'contactInfos',
-  default: null,
+  default: [],
   effects: [localStorageEffect<ContactInfo[]>('contactInfos')],
 });
 

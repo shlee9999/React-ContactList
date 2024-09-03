@@ -1,0 +1,30 @@
+.detail-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  border: 1px solid black;
+  background-color: white;
+  width: 400px;
+  height: 400px;
+  padding: 32px 48px;
+}
+
+.detail-modal > h2 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-align: center;
+}
+.detail_modal_contact_info-con {
+  margin-top: 50px;
+}
+.detail_modal_contact_info-item {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  padding: 1rem 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.detail_modal_contact_info-item > span:first-child {
+  font-weight: 600;
+}

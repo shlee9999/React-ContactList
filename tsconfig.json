@@ -9,6 +9,9 @@
       "@pages/*": ["pages/*"],
       "@utils/*": ["pages/*"]
     },
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+
     "jsx": "react-jsx"
   }
 }
