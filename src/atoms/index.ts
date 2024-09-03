@@ -8,10 +8,9 @@ const localStorageEffect: <T>(key: string) => AtomEffect<T> =
     if (savedValue !== null) {
       setSelf(JSON.parse(savedValue));
     }
-
     onSet((newValue, _, isReset) => {
       if (isReset) return localStorage.removeItem(key);
-
+      console.log(newValue);
       return localStorage.setItem(key, JSON.stringify(newValue));
     });
   };
