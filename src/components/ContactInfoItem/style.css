@@ -1,0 +1,10 @@
+.contact_info-item {
+  border: 1px solid var(--border-color);
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.contact_info-item button {
+  padding: 0.5rem;
+}

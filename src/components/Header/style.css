@@ -1,0 +1,9 @@
+header.header {
+  padding: 1rem;
+}
+
+h1 {
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 600;
+}

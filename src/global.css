@@ -3,7 +3,15 @@
   --s-color: #f0f8ff;
   --border-color: #dedede;
 }
-
+* {
+  box-sizing: border-box;
+  font-family: 'Noto Sans KR', system-ui;
+}
+ul,
+ol,
+li {
+  font-family: 'Noto Sans KR', system-ui;
+}
 button {
   cursor: pointer;
 }
@@ -16,4 +24,5 @@ button:active {
 
 input {
   padding: 0;
+  outline: none;
 }
