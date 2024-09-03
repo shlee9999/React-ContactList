@@ -30,6 +30,8 @@ select {
 input {
   padding: 0;
   outline: none;
+  border: 2px solid gray;
+  padding: 8px;
 }
 
 input:focus::placeholder {

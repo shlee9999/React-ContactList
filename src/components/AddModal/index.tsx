@@ -1,6 +1,5 @@
 import PrimaryBtn from '@/components/PrimaryBtn';
 import './style.css';
-import Input from '@/components/Input';
 import { ContactInfo } from '@/types';
 import useContactInfos from '@/hooks/useContactInfo';
 import { useRecoilValue } from 'recoil';
@@ -8,14 +7,15 @@ import { groupsAtom } from '@/atoms';
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 import { faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 interface AddModalProps {
   isOpen: boolean;
   closeModal: () => void;
   openGroupModal: () => void;
 }
-
+const koreanRegExp = new RegExp(/^[가-힣]+$/);
+const phoneRegExp = new RegExp(/\d{3}-\d{3,4}-\d{4}/);
 export default function AddModal({
   isOpen,
   openGroupModal,
@@ -24,6 +24,7 @@ export default function AddModal({
   const ref = useRef<HTMLInputElement>(null);
   const groups = useRecoilValue(groupsAtom);
   const { addContactInfo } = useContactInfos();
+  const [isError, setIsError] = useState({ name: false, phone: false });
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const $form = e.target as HTMLFormElement;
@@ -53,10 +54,16 @@ export default function AddModal({
     const target = e.target as HTMLInputElement;
     switch (target.name) {
       case 'name':
-        console.log(target.value);
+        setIsError((prev) => ({
+          ...prev,
+          name: !koreanRegExp.test(target.value),
+        }));
         return;
       case 'phone':
-        console.log(target.value);
+        setIsError((prev) => ({
+          ...prev,
+          phone: !phoneRegExp.test(target.value),
+        }));
         return;
       default:
         return;
@@ -65,6 +72,7 @@ export default function AddModal({
   useEffect(() => {
     if (isOpen && ref.current) ref.current.focus();
   }, [isOpen]);
+  console.log(isError);
   if (!isOpen) return null;
   return (
     <>
@@ -92,10 +100,15 @@ export default function AddModal({
                 pattern='^[가-힣]+$'
                 ref={ref}
               />
+              {isError.name && (
+                <span className='error'>
+                  이름은 2~4글자의 한글이어야 합니다.
+                </span>
+              )}
             </li>
             <li>
               <span>전화번호</span>
-              <Input
+              <input
                 onChange={onChange}
                 type='tel'
                 placeholder='전화번호(000-0000-0000)'
@@ -103,6 +116,11 @@ export default function AddModal({
                 pattern='\d{3}-\d{3,4}-\d{4}'
                 maxLength={13}
               />
+              {isError.phone && (
+                <span className='error'>
+                  000-0000-0000 형식에 맞추어 주세요.
+                </span>
+              )}
             </li>
             <li>
               <span>그룹</span>
@@ -123,7 +141,7 @@ export default function AddModal({
             </li>
             <li>
               <span>간단한 기록</span>
-              <Input
+              <input
                 onChange={onChange}
                 type='text'
                 placeholder='간단한 기록(최대 13자)'
