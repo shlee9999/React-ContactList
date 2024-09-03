@@ -70,3 +70,12 @@ input:focus::placeholder {
   font-weight: 600;
   text-align: center;
 }
+.error {
+  position: absolute;
+  top: calc(100% + 1px);
+  left: 105px;
+  font-weight: 400;
+  font-size: 0.8rem;
+  color: red;
+  width: 100%;
+}

@@ -1,12 +1,17 @@
 import { forwardRef, useState } from 'react';
 
 const koreanRegExp = new RegExp(/^[가-힣]+$/);
-const NameInput = forwardRef<HTMLInputElement>((_, ref) => {
+
+const NameInput = forwardRef<
+  HTMLInputElement,
+  React.InputHTMLAttributes<HTMLInputElement>
+>((props, ref) => {
   const [isError, setIsError] = useState(false);
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const target = e.target as HTMLInputElement;
     setIsError(!koreanRegExp.test(target.value));
   };
+
   return (
     <>
       <input
@@ -18,6 +23,7 @@ const NameInput = forwardRef<HTMLInputElement>((_, ref) => {
         name='name'
         pattern='^[가-힣]+$'
         ref={ref}
+        {...props} // 여기서 {...{ props }} -> {...props} 로 수정
       />
       {isError && (
         <span className='error'>이름은 2~4글자의 한글이어야 합니다.</span>

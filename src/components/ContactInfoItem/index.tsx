@@ -13,18 +13,20 @@ export default function ContactInfoItem({ contactInfo }: ContactInfoItemProps) {
   const { deleteContactInfo } = useContactInfos();
   const { isOpen, openModal, closeModal } = useModal();
   return (
-    <li className='contact_info-item' onClick={openModal}>
-      <span>
-        {name} {phone} {group}
-      </span>
-      <button className='delete-btn' onClick={() => deleteContactInfo(id)}>
-        <FontAwesomeIcon icon={faUserMinus} cursor='pointer' />
-      </button>
+    <>
+      <li className='contact_info-item' onClick={openModal}>
+        <span>
+          {name} {phone} {group}
+        </span>
+        <button className='delete-btn' onClick={() => deleteContactInfo(id)}>
+          <FontAwesomeIcon icon={faUserMinus} cursor='pointer' />
+        </button>
+      </li>{' '}
       <DetailModal
         isOpen={isOpen}
         closeModal={closeModal}
         contactInfo={contactInfo}
       />
-    </li>
+    </>
   );
 }

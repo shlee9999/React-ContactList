@@ -2,15 +2,45 @@
 }
 
 .detail_modal_contact_info-con {
-  margin-top: 50px;
+  margin-top: 10px;
 }
 .detail_modal_contact_info-item {
+  position: relative;
   display: flex;
   gap: 8px;
   align-items: center;
-  padding: 1rem 0;
+  height: 56px;
   border-bottom: 1px solid var(--border-color);
 }
 .detail_modal_contact_info-item > span:first-child {
   font-weight: 600;
+  width: 60px;
+}
+
+.detail-modal input {
+  padding: 0;
+  flex: 1;
+  border: none;
+  font-size: 1rem;
+  box-shadow: 0 0 0 1px black inset;
+}
+
+.detail-modal .error {
+  top: 40px;
+  left: 68px;
+}
+.detail-modal select {
+  flex: 1;
+}
+
+.detail-modal .update-btn {
+  margin-top: 16px;
+}
+
+.detail-modal .edit-btn {
+  position: absolute;
+  right: 48px;
+}
+.detail-modal .edit-btn:hover {
+  color: var(--p-color);
 }

@@ -1,12 +1,16 @@
 import { useRecoilValue } from 'recoil';
 import { groupsAtom } from '@/atoms';
-export default function GroupSelect() {
+
+interface GroupSelectProps {
+  defaultValue?: string;
+}
+export default function GroupSelect({ defaultValue }: GroupSelectProps) {
   const groups = useRecoilValue(groupsAtom);
 
   return (
-    <select name='group'>
+    <select name='group' defaultValue={defaultValue}>
       {groups.map((group, index) => (
-        <option key={index} defaultChecked={index === 0} value={group}>
+        <option key={index} value={group}>
           {group}
         </option>
       ))}

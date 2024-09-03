@@ -1,11 +1,11 @@
 .contact_info-item {
-  cursor: pointer;
   border: 1px solid var(--border-color);
   padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   transition: border-color 0.3s ease-out;
+  cursor: pointer;
 }
 .contact_info-item:first-child {
   border-radius: 10px 10px 0 0;
@@ -22,15 +22,13 @@
 .contact_info-item:hover {
   border-color: var(--p-color);
 }
-.contact_info-item button {
+.contact_info-item .delete-btn {
   padding: 0.5rem;
   background-color: transparent;
   border: none;
-}
-.contact_info-item button:hover {
-  color: var(--p-color);
-}
-.contact_info-item .delete-btn {
   padding: 0;
   transition: color 0.2s;
+}
+.contact_info-item .delete-btn:hover {
+  color: var(--p-color);
 }
