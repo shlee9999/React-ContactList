@@ -12,8 +12,11 @@ export default function HomePage() {
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const filterWord = e.target.value;
     setFilteredContactInfos(
-      contactInfos.filter((contactInfo) =>
-        contactInfo.name.startsWith(filterWord)
+      contactInfos.filter(
+        (contactInfo) =>
+          contactInfo.name.includes(filterWord) ||
+          contactInfo.group.includes(filterWord) ||
+          contactInfo.phone.includes(filterWord)
       )
     );
   };
@@ -22,8 +25,11 @@ export default function HomePage() {
     if (!ref.current) return;
     const filterWord = ref.current.value;
     setFilteredContactInfos(
-      contactInfos.filter((contactInfo) =>
-        contactInfo.name.startsWith(filterWord)
+      contactInfos.filter(
+        (contactInfo) =>
+          contactInfo.name.includes(filterWord) ||
+          contactInfo.group.includes(filterWord) ||
+          contactInfo.phone.includes(filterWord)
       )
     );
   }, [contactInfos]);
