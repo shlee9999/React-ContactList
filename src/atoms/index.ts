@@ -23,6 +23,6 @@ export const contactInfosAtom = atom<ContactInfo[]>({
 
 export const groupsAtom = atom<string[]>({
   key: 'groups',
-  default: ['가족', '직장', '친구'],
+  default: ['가족', '직장', '친구', '스터디'],
   effects: [localStorageEffect<string[]>('groups')],
 });
