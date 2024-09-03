@@ -68,7 +68,7 @@ export default function AddModal({ isOpen }: AddModalProps) {
                 </option>
               ))}
             </select>
-            <button>조직추가</button>
+            <button type='button'>조직추가</button>
           </li>
           <li>
             <span>간단한 기록</span>
