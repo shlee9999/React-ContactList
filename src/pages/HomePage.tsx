@@ -20,7 +20,12 @@ export default function HomePage() {
       )
     );
   };
-
+  const onClickListBtn = () => {
+    if (!ref.current) return;
+    setFilteredContactInfos(contactInfos);
+    ref.current.value = '';
+    ref.current.focus();
+  };
   useEffect(() => {
     if (!ref.current) return;
     const filterWord = ref.current.value;
@@ -38,8 +43,13 @@ export default function HomePage() {
       <AddModal isOpen />
       <div className='outer-wrap'>
         <div className='search-wrap'>
-          <input ref={ref} className='search-input' onChange={onChange} />
-          <PrimaryBtn>전체리스트 보기</PrimaryBtn>
+          <input
+            ref={ref}
+            className='search-input'
+            onChange={onChange}
+            placeholder='이름, 전화번호, 그룹으로 검색'
+          />
+          <PrimaryBtn onClick={onClickListBtn}>전체리스트 보기</PrimaryBtn>
         </div>
         <ContactInfoCon contactInfos={filteredContactInfos} />
       </div>

@@ -22,4 +22,9 @@
   border-radius: 12px;
   flex: 3;
   height: 100%;
+  border: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+.search-input:focus {
+  border-color: var(--p-color);
 }
