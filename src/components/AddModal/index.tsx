@@ -12,8 +12,8 @@ export default function AddModal({ isOpen }: AddModalProps) {
   const { addContactInfo } = useContactInfos();
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    const formData = new FormData(e.target as HTMLFormElement);
+    const $form = e.target as HTMLFormElement;
+    const formData = new FormData($form);
 
     const contactInfo: Omit<ContactInfo, 'id'> = {
       name: formData.get('name') as ContactInfo['name'],
@@ -21,8 +21,16 @@ export default function AddModal({ isOpen }: AddModalProps) {
       group: formData.get('group') as ContactInfo['group'],
       record: formData.get('record') as ContactInfo['record'],
     };
-    //todo value들 검사
+    //todo value들 검사 및 초기화
+    for (const key in contactInfo) {
+      if (!contactInfo[key]) {
+        ($form[key] as HTMLInputElement).focus(); // name으로 접근해서 focus하기
+        return;
+      } // 빈 값이 있으면 return
+    }
     addContactInfo(contactInfo);
+    $form.reset(); // 폼 초기화
+    ($form[0] as HTMLInputElement).focus(); // 이렇게 인덱스로 첫 번째 input 접근 가능
   };
   if (!isOpen) return null;
   return (

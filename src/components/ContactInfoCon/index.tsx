@@ -1,14 +1,16 @@
 import './style.css';
 import ContactInfoItem from '@/components/ContactInfoItem';
-import useContactInfos from '@/hooks/useContactInfo';
+import { ContactInfo } from '@/types';
 
-export default function ContactInfoCon() {
-  const { contactInfos } = useContactInfos();
+interface ContactInfoConProps {
+  contactInfos: ContactInfo[];
+}
+export default function ContactInfoCon({ contactInfos }: ContactInfoConProps) {
   if (contactInfos.length === 0) return null;
   return (
     <ul className='contact_info-con'>
       {contactInfos.map((contactInfo) => (
-        <ContactInfoItem contactInfo={contactInfo} />
+        <ContactInfoItem key={contactInfo.id} contactInfo={contactInfo} />
       ))}
     </ul>
   );
