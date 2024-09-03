@@ -54,23 +54,22 @@ export default function HomePage() {
   return (
     <div className='home'>
       <button onClick={openAddModal}>추가하기</button>
+      <div className='search-wrap'>
+        <input
+          ref={ref}
+          className='search-input'
+          onChange={onChange}
+          placeholder='이름, 전화번호, 그룹으로 검색'
+        />
+        <PrimaryBtn onClick={onClickListBtn}>전체리스트 보기</PrimaryBtn>
+      </div>
+
+      <ContactInfoCon contactInfos={filteredContactInfos} />
       <AddModal
         isOpen={isAddModalOpen}
         openGroupModal={openGroupModal}
         closeModal={closeAddModal}
       />
-      <div className='outer-wrap'>
-        <div className='search-wrap'>
-          <input
-            ref={ref}
-            className='search-input'
-            onChange={onChange}
-            placeholder='이름, 전화번호, 그룹으로 검색'
-          />
-          <PrimaryBtn onClick={onClickListBtn}>전체리스트 보기</PrimaryBtn>
-        </div>
-        <ContactInfoCon contactInfos={filteredContactInfos} />
-      </div>
       <GroupModal isOpen={isGroupModalOpen} closeModal={closeGroupModal} />
     </div>
   );

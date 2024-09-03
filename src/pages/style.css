@@ -1,9 +1,9 @@
 .home {
-  display: flex; /*! 임시. 나중에 모달로 바꾸면 빠질 css */
+  margin: auto;
+  min-width: var(--min-w);
+  max-width: var(--max-w);
 }
-.outer-wrap {
-  flex: 1; /*! 임시. 나중에 모달로 바꾸면 빠질 css */
-}
+
 .search-wrap {
   display: flex;
   height: 50px;
@@ -21,8 +21,8 @@
   border-radius: 12px;
   flex: 3;
   height: 100%;
-  border: 2px solid transparent;
-  transition: border-color 0.2s;
+  border: 2px solid var(--border-color);
+  transition: border-color 0.3s;
 }
 .search-input:focus {
   border-color: var(--p-color);

@@ -2,6 +2,8 @@
   --p-color: #007bff;
   --s-color: #f0f8ff;
   --border-color: #dedede;
+  --max-w: 800px;
+  --min-w: 500px;
 }
 * {
   box-sizing: border-box;
