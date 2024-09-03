@@ -3,6 +3,8 @@ import './style.css';
 import useContactInfos from '@/hooks/useContactInfo';
 import useModal from '@/hooks/useModal';
 import DetailModal from '@/components/DetailModal';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUserMinus } from '@fortawesome/free-solid-svg-icons';
 interface ContactInfoItemProps {
   contactInfo: ContactInfo;
 }
@@ -11,14 +13,13 @@ export default function ContactInfoItem({ contactInfo }: ContactInfoItemProps) {
   const { deleteContactInfo } = useContactInfos();
   const { isOpen, openModal, closeModal } = useModal();
   return (
-    <li className='contact_info-item'>
+    <li className='contact_info-item' onClick={openModal}>
       <span>
         {name} {phone} {group}
       </span>
-      <div className='btn_con'>
-        <button onClick={openModal}>세부사항</button>
-        <button onClick={() => deleteContactInfo(id)}>삭제</button>
-      </div>
+      <button className='delete-btn' onClick={() => deleteContactInfo(id)}>
+        <FontAwesomeIcon icon={faUserMinus} cursor='pointer' />
+      </button>
       <DetailModal
         isOpen={isOpen}
         closeModal={closeModal}
