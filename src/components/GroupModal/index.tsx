@@ -42,7 +42,12 @@ export default function GroupModal({ isOpen, closeModal }: GroupModalProps) {
           ))}
         </ul>
         <form className='group-form' onSubmit={onSubmit}>
-          <input type='text' placeholder='새 그룹 이름' name='group' />
+          <input
+            type='text'
+            placeholder='새 그룹 이름(최대 5자)'
+            name='group'
+            maxLength={5}
+          />
           <button>추가</button>
         </form>
       </div>
