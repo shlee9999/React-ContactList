@@ -1,14 +1,15 @@
 import PrimaryBtn from '@/components/PrimaryBtn';
 import './style.css';
 import Input from '@/components/Input';
-import { Group } from '@/enums';
 import { ContactInfo } from '@/types';
 import useContactInfos from '@/hooks/useContactInfo';
+import { useRecoilValue } from 'recoil';
+import { groupsAtom } from '@/atoms';
 interface AddModalProps {
   isOpen: boolean;
 }
 export default function AddModal({ isOpen }: AddModalProps) {
-  // const { addContactInfo } = useContactInfo();
+  const groups = useRecoilValue(groupsAtom);
   const { addContactInfo } = useContactInfos();
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -61,13 +62,9 @@ export default function AddModal({ isOpen }: AddModalProps) {
           <li>
             <span>그룹</span>
             <select name='group'>
-              {Object.keys(Group).map((key, index) => (
-                <option
-                  key={index}
-                  defaultChecked={index === 0}
-                  value={Group[key]}
-                >
-                  {Group[key]}
+              {groups.map((group, index) => (
+                <option key={index} defaultChecked={index === 0} value={group}>
+                  {group}
                 </option>
               ))}
             </select>
