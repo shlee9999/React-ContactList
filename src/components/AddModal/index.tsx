@@ -25,7 +25,10 @@ export default function AddModal({ isOpen, openGroupModal }: AddModalProps) {
     };
     //todo value들 검사
     for (const key in contactInfo) {
-      if (key !== 'record' && !contactInfo[key]) {
+      if (
+        key !== 'record' &&
+        !contactInfo[key as keyof Omit<ContactInfo, 'id'>]
+      ) {
         ($form[key] as HTMLInputElement).focus(); // name으로 접근해서 focus하기
         return;
       } // 빈 값이 있으면 return

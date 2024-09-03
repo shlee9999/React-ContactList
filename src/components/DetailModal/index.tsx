@@ -35,8 +35,8 @@ export default function DetailModal({
           {Object.keys(contactInfo).map((key) =>
             key !== 'id' ? (
               <li className='detail_modal_contact_info-item'>
-                <span>{category[key]}</span>
-                <span>{contactInfo[key]}</span>
+                <span>{category[key as keyof typeof category]}</span>
+                <span>{contactInfo[key as keyof typeof category]}</span>
               </li>
             ) : null
           )}
