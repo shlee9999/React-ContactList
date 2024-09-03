@@ -36,6 +36,7 @@ input:focus::placeholder {
   color: transparent;
 }
 
+/** Modals */
 .modal_close-btn {
   position: absolute;
   top: 16px;

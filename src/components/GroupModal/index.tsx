@@ -31,7 +31,7 @@ export default function GroupModal({ isOpen, closeModal }: GroupModalProps) {
         />
         <ul className='group-con'>
           {groups.map((group) => (
-            <li className='group-item'>
+            <li key={group} className='group-item'>
               <span>{group}</span>
               {
                 <FontAwesomeIcon

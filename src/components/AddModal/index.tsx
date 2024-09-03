@@ -86,6 +86,7 @@ export default function AddModal({
                 placeholder='전화번호(000-0000-0000)'
                 name='phone'
                 pattern='\d{3}-\d{3,4}-\d{4}'
+                maxLength={13}
               />
             </li>
             <li>

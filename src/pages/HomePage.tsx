@@ -6,6 +6,9 @@ import useContactInfos from '@/hooks/useContactInfo';
 import { useEffect, useRef, useState } from 'react';
 import useModal from '@/hooks/useModal';
 import GroupModal from '@/components/GroupModal';
+import Header from '@/components/Header';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
 export default function HomePage() {
   const { contactInfos } = useContactInfos();
@@ -22,8 +25,11 @@ export default function HomePage() {
     closeModal: closeAddModal,
   } = useModal();
   const ref = useRef<HTMLInputElement>(null);
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const filterWord = e.target.value;
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const target = e.target as HTMLFormElement;
+    const $searchInput = target['search-input'] as HTMLInputElement;
+    const filterWord = $searchInput.value;
     setFilteredContactInfos(
       contactInfos.filter(
         (contactInfo) =>
@@ -32,13 +38,10 @@ export default function HomePage() {
           contactInfo.phone.includes(filterWord)
       )
     );
+    $searchInput.focus();
   };
-  const onClickListBtn = () => {
-    if (!ref.current) return;
-    setFilteredContactInfos(contactInfos);
-    ref.current.value = '';
-    ref.current.focus();
-  };
+
+  // };
   useEffect(() => {
     if (!ref.current) return;
     const filterWord = ref.current.value;
@@ -52,25 +55,29 @@ export default function HomePage() {
     );
   }, [contactInfos]);
   return (
-    <div className='home'>
-      <button onClick={openAddModal}>추가하기</button>
-      <div className='search-wrap'>
-        <input
-          ref={ref}
-          className='search-input'
-          onChange={onChange}
-          placeholder='이름, 전화번호, 그룹으로 검색'
-        />
-        <PrimaryBtn onClick={onClickListBtn}>전체리스트 보기</PrimaryBtn>
+    <>
+      <div className='home'>
+        <Header />
+        <form className='search-form' onSubmit={onSubmit}>
+          <button className='search-btn'>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
+          </button>
+          <input
+            ref={ref}
+            className='search-input'
+            placeholder='이름, 전화번호, 그룹으로 검색'
+            name='search-input'
+          />
+        </form>
+        <PrimaryBtn onClick={openAddModal}>연락처 추가하기</PrimaryBtn>
+        <ContactInfoCon contactInfos={filteredContactInfos} />
       </div>
-
-      <ContactInfoCon contactInfos={filteredContactInfos} />
       <AddModal
         isOpen={isAddModalOpen}
         openGroupModal={openGroupModal}
         closeModal={closeAddModal}
       />
       <GroupModal isOpen={isGroupModalOpen} closeModal={closeGroupModal} />
-    </div>
+    </>
   );
 }
