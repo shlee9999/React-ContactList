@@ -1,0 +1,19 @@
+:root {
+  --p-color: #007bff;
+  --s-color: #f0f8ff;
+  --border-color: #dedede;
+}
+
+button {
+  cursor: pointer;
+}
+button:hover {
+  filter: brightness(1.2);
+}
+button:active {
+  filter: brightness(1.1);
+}
+
+input {
+  padding: 0;
+}
