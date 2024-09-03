@@ -1,16 +1,12 @@
 {
   "compilerOptions": {
-    "baseUrl": "./src",
-    "paths": {
-      "@/*": ["*"],
-      "@components/*": ["components/*"],
-      "@constants/*": ["pages/*"],
-      "@hooks/*": ["pages/*"],
-      "@pages/*": ["pages/*"],
-      "@utils/*": ["pages/*"]
-    },
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "jsx": "react-jsx"
-  }
+  },
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }

@@ -1,4 +1,3 @@
-import './style.css';
 import ContactInfoItem from '@/components/ContactInfoItem';
 import { ContactInfo } from '@/types';
 
