@@ -71,13 +71,13 @@ export default function HomePage() {
         </form>
         <PrimaryBtn onClick={openAddModal}>연락처 추가하기</PrimaryBtn>
         <ContactInfoCon contactInfos={filteredContactInfos} />
-        <AddModal
-          isOpen={isAddModalOpen}
-          openGroupModal={openGroupModal}
-          closeModal={closeAddModal}
-        />
-        <GroupModal isOpen={isGroupModalOpen} closeModal={closeGroupModal} />
       </div>
+      <AddModal
+        isOpen={isAddModalOpen}
+        openGroupModal={openGroupModal}
+        closeModal={closeAddModal}
+      />
+      <GroupModal isOpen={isGroupModalOpen} closeModal={closeGroupModal} />
     </>
   );
 }

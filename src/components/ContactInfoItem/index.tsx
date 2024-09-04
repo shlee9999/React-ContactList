@@ -21,7 +21,7 @@ export default function ContactInfoItem({ contactInfo }: ContactInfoItemProps) {
         <button className='delete-btn' onClick={() => deleteContactInfo(id)}>
           <FontAwesomeIcon icon={faUserMinus} cursor='pointer' />
         </button>
-      </li>{' '}
+      </li>
       <DetailModal
         isOpen={isOpen}
         closeModal={closeModal}
